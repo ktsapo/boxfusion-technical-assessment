@@ -1,4 +1,4 @@
-﻿using Employees.Domain.Aggregates.EmployeeAggregate;
+﻿using Employees.Domain.Employees;
 using Microsoft.EntityFrameworkCore;
 
 namespace Employees.Infrastructure.Persistance

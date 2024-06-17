@@ -1,4 +1,6 @@
-﻿namespace Employees.Domain.Aggregates.EmployeeAggregate.ValueObjects
+﻿using Employees.Domain.Common.Utils;
+
+namespace Employees.Domain.Employees.ValueObjects
 {
     /// <summary>
     /// Value object to represent the unique identifier of an employee.
@@ -39,9 +41,7 @@
         /// <returns></returns>
         public static EmployeeId CreateUnique()
         {
-            // TODO: Implement unique id generation using the following rules:
-            // 1. The id should be a string with 2 random uppercase letters followed by 4 random numbers.
-            return new(Guid.NewGuid().ToString());
+            return new(IdGenerationUtils.GenerateEmployeeId());
         }
     }
 }

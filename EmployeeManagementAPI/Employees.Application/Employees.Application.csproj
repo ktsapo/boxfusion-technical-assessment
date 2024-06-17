@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Employees\Commands\" />
+    <PackageReference Include="MediatR" Version="12.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Employees.Contracts\Employees.Contracts.csproj" />
+    <ProjectReference Include="..\Employees.Domain\Employees.Domain.csproj" />
   </ItemGroup>
 
 </Project>

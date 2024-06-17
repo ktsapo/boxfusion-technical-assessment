@@ -1,8 +1,8 @@
 ﻿using Employees.Infrastructure.Persistance;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using Employees.Domain.Aggregates.EmployeeAggregate.Repository;
 using Employees.Infrastructure.Persistance.Repositories;
+using Employees.Domain.Employees.Repository;
 
 namespace Employees.Infrastructure
 {
@@ -19,7 +19,7 @@ namespace Employees.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             // TODO: Add the connection string to the database.
-            services.AddDbContext<EmployeeDbContext>(options => options.UseSqlServer(""));
+            services.AddDbContext<EmployeeDbContext>(options => options.UseSqlServer("Data Source=.; Initial Catalog=Employees;MultipleActiveResultSets=True;Trusted_Connection=True;TrustServerCertificate=true;"));
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             return services;
         }

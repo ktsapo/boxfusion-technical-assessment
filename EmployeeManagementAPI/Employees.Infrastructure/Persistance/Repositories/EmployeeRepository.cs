@@ -1,6 +1,6 @@
-﻿using Employees.Domain.Aggregates.EmployeeAggregate;
-using Employees.Domain.Aggregates.EmployeeAggregate.Repository;
-using Employees.Domain.Aggregates.EmployeeAggregate.ValueObjects;
+﻿using Employees.Domain.Employees;
+using Employees.Domain.Employees.Repository;
+using Employees.Domain.Employees.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 
 namespace Employees.Infrastructure.Persistance.Repositories
@@ -55,7 +55,8 @@ namespace Employees.Infrastructure.Persistance.Repositories
         /// <returns></returns>
         public async Task<Employee> GetByIdAsync(EmployeeId id)
         {
-            return await _employeeDbContext.Employees.Where(e => e.Id == id).FirstOrDefaultAsync();
+            return await _employeeDbContext.Employees.Where(e => e.Id == id)
+                .FirstOrDefaultAsync();
         }
 
         /// <summary>
