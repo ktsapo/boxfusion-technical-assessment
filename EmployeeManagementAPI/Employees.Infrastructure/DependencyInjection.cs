@@ -19,7 +19,7 @@ namespace Employees.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             // TODO: Add the connection string to the database.
-            services.AddDbContext<EmployeeDbContext>(options => options.UseSqlServer("Data Source=.; Initial Catalog=Employees;MultipleActiveResultSets=True;Trusted_Connection=True;TrustServerCertificate=true;"));
+            services.AddDbContext<EmployeeDbContext>(options => options.UseSqlServer("Data Source=.; Initial Catalog=Employees;MultipleActiveResultSets=True;Trusted_Connection=True;TrustServerCertificate=true;Connection Timeout=5"));
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             return services;
         }

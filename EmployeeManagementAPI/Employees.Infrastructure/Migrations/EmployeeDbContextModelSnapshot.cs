@@ -49,12 +49,12 @@ namespace Employees.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employees", (string)null);
                 });
 
             modelBuilder.Entity("Employees.Domain.Employees.Employee", b =>
                 {
-                    b.OwnsOne("Employees.Domain.Employees.ValueObjects.Address", "Address", b1 =>
+                    b.OwnsOne("Employees.Domain.Employees.Employee.Address#Employees.Domain.Employees.ValueObjects.Address", "Address", b1 =>
                         {
                             b1.Property<string>("EmployeeId")
                                 .HasColumnType("nvarchar(450)");
@@ -76,13 +76,13 @@ namespace Employees.Infrastructure.Migrations
 
                             b1.HasKey("EmployeeId");
 
-                            b1.ToTable("Employees");
+                            b1.ToTable("Employees", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("EmployeeId");
                         });
 
-                    b.OwnsMany("Employees.Domain.Skills.EmployeeSkill", "Skills", b1 =>
+                    b.OwnsMany("Employees.Domain.Employees.Employee.Skills#Employees.Domain.Skills.EmployeeSkill", "Skills", b1 =>
                         {
                             b1.Property<string>("EmployeeId")
                                 .HasColumnType("nvarchar(450)");

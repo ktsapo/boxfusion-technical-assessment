@@ -12,6 +12,8 @@ namespace Employees.Domain.Skills
     {
         public string Name { get; private set; }
 
+        public EmployeeId EmployeeId { get; private set; }
+
         public int YearsOfExperience { get; private set; }
 
         public SeniorityRating SeniorityRating { get; private set; }
@@ -37,6 +39,16 @@ namespace Employees.Domain.Skills
         public static EmployeeSkill Create(string name, int yearsOfExperience, SeniorityRating seniorityRating)
         {
             return new(SkillId.CreateUnique(), name, yearsOfExperience, seniorityRating);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj != null && obj is Entity<SkillId> s && Id == s.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
         }
     }
 }

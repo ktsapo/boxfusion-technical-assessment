@@ -9,6 +9,7 @@ namespace Employees.Tests
         private const string EmployeesApplicationAssembly = "Employees.Application";
         private const string EmployeesDomainAssembly = "Employees.Domain";
         private const string EmployeesInfrastructureAssembly = "Employees.Infrastructure";
+        private const string EmployeesContractsAssembly = "Employees.Contracts";
 
 
         [Fact]
@@ -88,6 +89,30 @@ namespace Employees.Tests
 
             // Act
             var testResult = Types.InAssembly(apiAssembly)
+                .ShouldNot()
+                .HaveDependencyOnAll(otherProjectsInSolution)
+                .GetResult();
+
+            // Assert
+            Assert.True(testResult.IsSuccessful);
+        }
+    
+        
+        [Fact]
+        public void Employees_Contracts_Should_Not_HaveDependencyOnOtherProjects()
+        {
+            // Arrange
+            var contractsAssembly = typeof(Contracts.AssemblyReference).Assembly;
+            var otherProjectsInSolution = new[]
+            {
+                EmployeesApiAssembly,
+                EmployeesApplicationAssembly,
+                EmployeesDomainAssembly,
+                EmployeesInfrastructureAssembly
+            };
+
+            // Act
+            var testResult = Types.InAssembly(contractsAssembly)
                 .ShouldNot()
                 .HaveDependencyOnAll(otherProjectsInSolution)
                 .GetResult();

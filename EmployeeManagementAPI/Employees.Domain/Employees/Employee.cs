@@ -50,5 +50,16 @@ namespace Employees.Domain.Employees
         {
             return new(EmployeeId.CreateUnique(), firstName, lastName, email, contactNumber, dateOfBirth, address, skills);
         }
+
+
+        public override bool Equals(object? obj)
+        {
+            return obj != null && obj is Employee e && Id == e.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
     }
 }

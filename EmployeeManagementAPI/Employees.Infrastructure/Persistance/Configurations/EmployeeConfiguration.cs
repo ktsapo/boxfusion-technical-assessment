@@ -45,6 +45,15 @@ namespace Employees.Infrastructure.Persistance.Configurations
                         value => SkillId.Create(value)
                     )
                     .ValueGeneratedNever();
+                sb.HasKey(s => s.Id);
+                sb.Property(s => s.EmployeeId)
+                    .HasColumnName("EmployeeId")
+                    .HasConversion(
+                        id => id.Value,
+                        value => EmployeeId.Create(value)
+                    )
+                    .ValueGeneratedNever();
+                sb.WithOwner().HasForeignKey(sb => sb.EmployeeId);
                 sb.Property(s => s.Name)
                     .HasColumnName("Name")
                     .IsRequired();
@@ -57,6 +66,9 @@ namespace Employees.Infrastructure.Persistance.Configurations
                         value => (SeniorityRating)Enum.Parse(typeof(SeniorityRating), value)
                     );
             });
+
+            builder.Metadata.FindNavigation(nameof(Employee.Skills))
+                !.SetPropertyAccessMode(PropertyAccessMode.Field);
         }
     }
 }

@@ -24,16 +24,9 @@ namespace Employees.Application.Features.Employees.Queries
         /// <returns></returns>
         public async Task<List<EmployeeResponse>> Handle(GetAllEmployeesQuery request, CancellationToken cancellationToken)
         {
-            var employees = await _employeeRepository.GetAllAsync();
-            return employees.Select(employee => new EmployeeResponse(employee.Id.Value, 
-                employee.FirstName, 
-                employee.LastName,
-                employee.Email,
-                employee.ContactNumber,
-                employee.DateOfBirth
-            )).ToList();
+            var employees = await _employeeRepository.GetAllWithoutSkillsAsync();
+            return employees.ToList();
         }
-
         
     }
 }

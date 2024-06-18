@@ -42,5 +42,32 @@ namespace Employees.API.Controllers
             await _mediator.Send(command);
             return Ok();
         }
+
+        /// <summary>
+        /// Http method to search for an employee by email, first name, or last name
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        [Route("Search"), HttpGet]
+        public async Task<IActionResult> Search(string query)
+        {
+            var command = new SearchEmployeeQuery(query);
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Route("{id}"), HttpGet]
+        public async Task<IActionResult> GetById(string id)
+        {
+            var command = new GetSingleEmployeeQuery(id);
+            var result = await _mediator.Send(command);
+
+            return Ok(result);
+        }
     }
 }
