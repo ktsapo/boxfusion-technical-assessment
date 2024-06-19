@@ -2,9 +2,20 @@ using Employees.Application;
 using Employees.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
+var AllowedOrigins = "_AllowedSpecificOrigins";
 
 // Add services to the container.
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: AllowedOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:3000")
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                      });
+});
 builder.Services.AddControllers();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
@@ -23,6 +34,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors(AllowedOrigins);
 
 app.UseAuthorization();
 
