@@ -91,11 +91,9 @@ const EmployeeCreateForm = ({ onSubmit }: IEmployeeCreateFormProps) => {
                   variant="outlined"
                   required
                   fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
+                  name="phone"
+                  label="Contact Number"
+                  id="phone"
                 />
               </Grid>
              
